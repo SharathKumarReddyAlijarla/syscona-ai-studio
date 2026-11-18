@@ -16,12 +16,16 @@
 - [Overview](#overview)
 - [Why SYSCONA AI Studio?](#why-syscona-ai-studio)
 - [Application Suite](#application-suite)
-- [Core Capabilities](#core-capabilities)
+- [Features](#features)
 - [End-to-End Workflow](#end-to-end-workflow)
 - [Module Details](#module-details)
 - [Engineering Tasks Completed](#engineering-tasks-completed)
-- [High-Level Architecture](#high-level-architecture)
+- [Architecture](#architecture)
 - [Technology Stack](#technology-stack)
+- [Setup](#setup)
+- [Usage](#usage)
+- [Results and Validation](#results-and-validation)
+- [Limitations](#limitations)
 - [Generated Outputs](#generated-outputs)
 - [Privacy, Confidentiality, and Availability](#privacy-confidentiality-and-availability)
 - [Project Status](#project-status)
@@ -60,7 +64,7 @@ Key goals of the platform include:
 | **Object Detection** | Find and classify multiple objects | YOLO Detect, YOLO Oriented Bounding Box, YOLO Segment | Boxes, rotated boxes, masks/polygons, confidence, precision, recall, F1, mAP, ONNX model |
 | **OCR** | Locate text and convert it into character sequences | YOLO detection models and PaddleOCR recognition models | Text regions, recognized text, detection/recognition confidence, exact accuracy, edit score, ONNX models |
 
-## Core Capabilities
+## Features
 
 ### 1. Project and Experiment Management
 
@@ -310,7 +314,7 @@ The development of SYSCONA AI Studio covers the following product and engineerin
 | **Distribution** | Created self-contained Windows CPU/GPU application profiles and installer workflows for use without a separately managed Python environment. |
 | **Quality assurance** | Added runtime checks, export verification, inference tests, compatibility checks, and built-in user documentation. |
 
-## High-Level Architecture
+## Architecture
 
 ```mermaid
 flowchart TB
@@ -360,6 +364,56 @@ The diagram intentionally shows only the public, high-level design. Internal imp
 | **Metrics and numerical work** | NumPy and supporting ML utilities |
 | **Plots and visualization** | Matplotlib, custom Qt visualization components |
 | **Windows distribution** | PyInstaller and Inno Setup |
+
+## Setup
+
+SYSCONA AI Studio is proprietary software. Source code, build scripts, installers, private model artifacts, and internal deployment instructions are intentionally not included in this public repository.
+
+Authorized users receive the appropriate self-contained Windows installer for their approved execution profile:
+
+- **CPU edition** for broad Windows compatibility
+- **GPU edition** for supported NVIDIA CUDA environments
+
+The packaged application uses its own managed runtime and does not require users to configure the private development environment. Access is available only through explicit authorization from the project owner.
+
+## Usage
+
+At a high level, users work through the following lifecycle:
+
+1. Create or open an isolated AI project.
+2. Import images and define the required classes.
+3. Curate classification labels or create object/text-region annotations.
+4. Create a deterministic train/validation/test split.
+5. Configure a classification, detection, or recognition tool.
+6. Train while monitoring logs and loss curves.
+7. Validate the exported model and inspect failure cases visually.
+8. Optimize detection confidence and NMS behavior where applicable.
+9. Export or finalize the ONNX inference model.
+10. Run inference on new images or a saved dataset partition.
+11. Review predictions, timing information, and generated reports.
+
+Detailed operational instructions are distributed with authorized application builds and are also available through the built-in user manual.
+
+## Results and Validation
+
+The studio provides task-specific evaluation rather than reporting one universal product score:
+
+- **Classification:** accuracy, precision, recall, F1, confusion matrices, confidence review, and Grad-CAM explanations
+- **Detection:** precision, recall, F1, mAP where available, actual/predicted overlays, and global or per-class threshold analysis
+- **Recognition:** exact string accuracy, normalized edit score, confidence summaries, crop-level review, and runtime timing
+- **Inference:** per-image outputs, visual prediction artifacts, provider/device information, staged timing, and structured reports
+
+No customer datasets, benchmark tables, trained weights, or confidential validation artifacts are published in this repository. Model performance depends on the dataset, labeling consistency, model selection, hardware, and evaluation protocol used for a specific project.
+
+## Limitations
+
+- The public repository is documentation-only and cannot be used to build or run the product.
+- The current application family targets Windows 10/11 x64 environments.
+- GPU execution requires compatible NVIDIA hardware, drivers, and the approved GPU build.
+- Some pretrained OCR models can require a one-time download before offline use.
+- Benchmarking and additional user-facing augmentation controls remain areas of active development.
+- Results are project-specific; the studio cannot compensate for poor data quality, inconsistent annotations, or unrepresentative evaluation sets.
+- Deployment into another production system requires separate integration, validation, monitoring, and security work.
 
 ## Generated Outputs
 
